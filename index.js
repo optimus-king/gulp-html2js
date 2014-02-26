@@ -1,7 +1,6 @@
 var es = require('event-stream')
 var gutil = require('gulp-util')
 var compile = require('./lib/compile')
-var module = require('./lib/module')
 
 module.exports = function(options) {
   options = options || {}
