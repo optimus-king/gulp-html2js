@@ -1,4 +1,5 @@
 var es = require('event-stream')
+var through = require('through')
 var gutil = require('gulp-util')
 var compile = require('./lib/compile')
 
@@ -21,6 +22,10 @@ module.exports = function(options) {
 
       cb(null, file)
     })
-    .pipe(es.join(";"))
   })
+    .pipe(through(function write(data) {
+        this.emit('data', data)
+    }, function end() {
+        this.emit('end')
+    })
 }
